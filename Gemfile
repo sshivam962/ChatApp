@@ -61,4 +61,5 @@ gem 'popper_js'
 gem 'tether-rails'
 gem 'figaro'
 gem "cocoon"
+gem "net-smtp"
 
