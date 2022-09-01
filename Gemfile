@@ -61,5 +61,7 @@ gem 'popper_js'
 gem 'tether-rails'
 gem 'figaro'
 gem "cocoon"
-gem "net-smtp"
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
