@@ -1,0 +1,19 @@
+<h1>My Inbox</h1>
+
+<div>
+  <% if @conversations.present? %>
+    <% @conversations.each do |conversation| %>
+      <% if conversation.sender_id ==current_user.id or conversation.recipient_id == current_user.id %>
+        <%if conversation.sender_id == current_user.id %>
+          <% recipient = @users.find_by(id: conversation.recipient_id)%>
+        <% else %>
+          <% recipient = @users.find_by(id: conversation.sender_id) %>
+        <%end %>
+        <h5><%= link_to recipient.name, conversation_messages_path(conversation) %></h5>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h5>No conversation found. To chat <%= link_to "Click here", root_path %></h5>
+  <% end %>
+</div>
+

@@ -1,0 +1,26 @@
+<h1>Messages</h1>
+
+<div>
+  <div style="padding: 20px; border: 1px solid black;">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = @users.find_by(id: message.user_id) %>
+        <div id="message"><%=  render partial: "message", locals: {user: user, message: message} %></div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<div>
+  <%= form_for :message, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control", id: "body", placeholder: "Say Something..........." %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Send", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

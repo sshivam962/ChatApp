@@ -1,0 +1,3 @@
+<% user = User.find_by(id: @message.user_id) %>
+$('#message').append("<%= j(render partial: 'message', locals: {user: user, message: @message}) %>");
+$('#body').val('');

@@ -1,0 +1,18 @@
+<div>
+  <%= form.label :project_name %>
+  <%= form.text_field :project_name, class: "form-control" %>
+</div>
+<div>
+  <h3>Tasks</h3>
+  <%= form.fields_for :articles do |article| %>
+    <%= render 'article_fields', f: article %>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to_add_association 'Add articles', form, :articles %>
+</div><br>
+
+<div>
+  <%= form.submit class: "btn btn-primary" %>
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+      th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+      }
+      tr:hover {background-color: #d7d2d2;}
+  </style>
+</head>
+<body>
+<h2><%= link_to 'Projects', projects_path %></h2>
+<h3> All Users</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Delete</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <% if user.approved %>
+        <td>Approved</td>
+      <% else %>
+        <td>Unapproved</td>
+      <% end %>
+      <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Do you want to delete?" } %></td>
+    </tr>
+  <% end %>
+</table><br>
+<h3> Un Approved Users</h3>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Approve</th>
+    <th>Delete</th>
+  </tr>
+  <% @users.where(approved: false).each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to 'Approve', approve_path(user.id, value: true), method: 'put' %></td>
+      <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Do you want to delete?" } %></td>
+    </tr>
+  <% end %>
+</table>
+
+</body>
+</html>
